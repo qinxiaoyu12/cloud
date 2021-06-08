@@ -1,11 +1,9 @@
 <template>
 	<view class="content">
-		<image class="logo" src="
-			https://vkceyugu.cdn.bspapp.com/VKCEYUGU-6b4520e2-f268-44e2-94e2-78ed64bbb421/cffca1db-d98e-4fbd-8331-ff49a9efbde3.png"></image>
-		<view class="text-area">
-			<text class="title">{{title}}</text>
-		</view>
-		<button @click="open"></button>
+		<!--自定义组件-->
+		<navbar></navbar>
+		<tab :list="tabList"></tab>
+		<view v-for="item in 100">{{item}}</view>
 	</view>
 </template>
 
@@ -13,49 +11,26 @@
 	export default {
 		data() {
 			return {
-				title: 'Hello'
+				tabList:[]
 			}
 		},
 		onLoad() {
-				uniCloud.callFunction({
-					name:"login",
-					success(res) {
-						console.log(res);
-					}
-				})
+			this.getLabel()
 		},
 		methods: {
-				open() {
-					uni.chooseImage({
-						count:1,
-						success(res) {
-							const tempFilePath = res.tempFilePaths[0]
-							console.log(tempFilePath);
-						},
-						fail(err) {
-							console.log(err);
-						}
-					})
-				}
- 		}
+			getLabel() {
+				this.$api.get_label({
+					name:'get_label'
+				}).then((res) => {
+					console.log(res)
+					const {data} = res;
+					this.tabList = data;
+				})
+			}
 	}
+}
 </script>
 
-<style>
-	.content {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-	}
+<style lang="scss">
 
-	.text-area {
-		display: flex;
-		justify-content: center;
-	}
-
-	.title {
-		font-size: 36rpx;
-		color: #8f8f94;
-	}
 </style>
