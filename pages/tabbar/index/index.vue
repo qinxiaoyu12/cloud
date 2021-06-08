@@ -2,7 +2,7 @@
 	<view class="content">
 		<!--自定义组件-->
 		<navbar></navbar>
-		<tab :list="tabList"></tab>
+		<tab :list="tabList" @tab='tab'></tab>
 		<view v-for="item in 100">{{item}}</view>
 	</view>
 </template>
@@ -18,11 +18,15 @@
 			this.getLabel()
 		},
 		methods: {
+			tab(item, index) {
+				console.log(item,index)
+			},
 			getLabel() {
+				// console.log(this.$api)
 				this.$api.get_label({
 					name:'get_label'
 				}).then((res) => {
-					console.log(res)
+					// console.log(res)
 					const {data} = res;
 					this.tabList = data;
 				})
