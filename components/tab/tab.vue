@@ -19,6 +19,17 @@
 				default() {
 					return []
 				}
+			},
+			tabIndex:{
+				type:Number,
+				default:0
+			}
+		},
+		//watch用来监听props和data里面的数据变化
+		watch:{
+			tabIndex(newIndex) {
+				// console.log(newIndex)
+				this.activeIndex = newIndex
 			}
 		},
 		name:"tab",
@@ -34,6 +45,7 @@
 					data:item,
 					index:index
 				})
+				
 			}
 		}
 	}
