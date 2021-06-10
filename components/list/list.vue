@@ -1,7 +1,7 @@
 <template>
 	<swiper class="home-swiper" @change="change1" :current="activeIndexs">
 		<swiper-item class="swiper-item" v-for="(item, index) in tab" :key='index'>
-			<listItem></listItem>
+			<listItem :list="list"></listItem>
 		</swiper-item>
 	</swiper>
 </template>
@@ -18,16 +18,20 @@
 				type:Array,
 				default() {
 					return []
-				}
+				},
 			},
 			activeIndexs:{
 				type:Number,
 				default:0
 			}
 		},
+		created() {
+			this.getList()
+		},
 		data() {
 			return {
-				activeIndex:0
+				activeIndex:0,
+				list:[]
 			};
 		},
 		methods:{
@@ -36,6 +40,14 @@
 				// console.log(e)
 				this.$emit('change1', current)
 				// console.log(current)
+			},
+			getList() {
+				this.$api.get_list().then(res => {
+					// console.log(res)
+					const {data} = res
+					this.list = data
+					console.log(this.list)
+				})
 			}
 		}
 	}

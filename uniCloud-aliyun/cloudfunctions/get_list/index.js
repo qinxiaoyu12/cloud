@@ -3,14 +3,16 @@ const db = uniCloud.database()
 exports.main = async (event, context) => {
 	const collection = db.collection('user')
 	
-	const res = await collection.where({
-		name:'vue-test'
-	}).get();
-	console.log(JSON.stringify(res));
+	const list = await db.collection('article')
+	.field({
+		//true只返回这个字段，false不返回这个字段
+		content:false
+	})
+	.get()
 	
 	return {
 		code:200,
-		msg:'查询成功',
-		data:res.data
+		msg:'数据请求成功',
+		data:list.data
 	}
 };

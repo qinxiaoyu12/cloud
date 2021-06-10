@@ -1,17 +1,27 @@
 <template>
 	<list-scroll class="list-scroll">
-		<list-card mode="base"></list-card>
-		<list-card mode="image"></list-card>
-		<list-card mode="column"></list-card>
-		<list-card mode="column"></list-card>
-		<list-card mode="column"></list-card>
-		<list-card mode="column"></list-card>
-		<list-card mode="column"></list-card>
+		<view>
+			<list-card :items="items" v-for="(items, index) in list" :key='items._id'></list-card>
+		</view>
 	</list-scroll>
 </template>
 
 <script>
-	
+	export default {
+		props:{
+			list:{
+				type:Array,
+				default() {
+					return []
+				}
+			}
+		},
+		data() {
+			return {
+				item:{}
+			}
+		}
+			}
 </script>
 
 <style lang="scss">

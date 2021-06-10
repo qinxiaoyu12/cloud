@@ -1,9 +1,9 @@
 <template>
 	<view>
 		<!--基础卡片-->
-		<view class="listCard" v-if="mode === 'base'">
+		<view class="listCard" v-if="items.mode === 'base'">
 			<view class="listCard-image">
-				<image src="../../static/logo.png" mode="aspectFill"></image>
+				<image src="items.cover[0]" mode="aspectFill"></image>
 			</view>
 			
 			<view class="listCard-content">
@@ -12,60 +12,60 @@
 											-webkit-box-orient: vertical;
 											-webkit-line-clamp: 2;
 											overflow: hidden;
-											word-break: break-all;">uni-app开发框架uni-app开发框架uni-app开发框架uni-app开发框架uni-app开发框架uni-app开发框架</text>
+											word-break: break-all;">{{items.title}}</text>
 				</view>
 				
 				<view class="listCard-content_des">
 					<view class="listCard-content__des-label">
-						<view class="listCard-content__des-label-item">前端</view>
+						<view class="listCard-content__des-label-item">{{items.classify}}</view>
 					</view>
-					<view class="listCard-content__des-browse">120浏览</view>
+					<view class="listCard-content__des-browse">{{items.browse_count}}浏览</view>
 				</view>
 			</view>
 		</view>
 		
 		<!--多图卡片-->
-		<view class="listCard mode-column" v-if="mode ==='column'">
+		<view class="listCard mode-column" v-if="items.mode ==='column'">
 		
 			<view class="listCard-content">
 				<view class="listCard-content_title">
 					<text style="display: -webkit-box;-webkit-box-orient: vertical;
-											-webkit-line-clamp: 2;overflow: hidden;word-break: break-all;">uni-app开发框架uni-app开发框架uni-app开发框架uni-app开发框架uni-app开发框架uni-app开发框架</text>
+											-webkit-line-clamp: 2;overflow: hidden;word-break: break-all;">{{items.title}}</text>
 				</view>
 				
 				<view class="listCard-image" >
 					<view v-for="item in 3" :key="item" class="listCard-image__item">
-						<image src="../../static/logo.png" mode="aspectFill"></image>
+						<image v-if="index < 3" v-for="(item,index) in items.cover" :key="index" src="items.cover[index]" mode="aspectFill"></image>
 					</view>
 				</view>
 				
 				<view class="listCard-content_des">
 					<view class="listCard-content__des-label">
-						<view class="listCard-content__des-label-item">前端</view>
+						<view class="listCard-content__des-label-item">{{items.classify}}</view>
 					</view>
-					<view class="listCard-content__des-browse">120浏览</view>
+					<view class="listCard-content__des-browse">{{items.browse_count}}浏览</view>
 				</view>
 			</view>
 			
 		</view>
 		
 		<!--大图卡片-->
-		<view class="listCard mode-image" v-if="mode === 'image'">
+		<view class="listCard mode-image" v-if="items.mode === 'image'">
 			<view class="listCard-image" >
-					<image src="../../static/logo.png" mode="aspectFill"></image>
+					<image src="items.cover[0]" mode="aspectFill"></image>
 			</view>
 			<view class="listCard-content">
 				
 				<view class="listCard-content_title">
 					<text style="display: -webkit-box;-webkit-box-orient: vertical;
-											-webkit-line-clamp: 2;overflow: hidden;word-break: break-all;">uni-app开发框架uni-app开发框架uni-app开发框架uni-app开发框架uni-app开发框架uni-app开发框架</text>
+											-webkit-line-clamp: 2;overflow: hidden;word-break: break-all;">{{items.title}}</text>
 				</view>
 				
 				<view class="listCard-content_des">
 					<view class="listCard-content__des-label">
-						<view class="listCard-content__des-label-item">前端</view>
+						<view class="listCard-content__des-label-item">{{items.classify}}</view>
 					</view>
-					<view class="listCard-content__des-browse">120浏览</view>
+					<view class="listCard-content__des-browse">{{items.browse_count}}浏览</view>
 				</view>
 			</view>
 			
@@ -77,15 +77,17 @@
 	export default {
 		name:"list-card",
 		props:{
-			mode:{
-				type:String,
-				default:'base'
+			items:{
+				type:Object,
+				default() {
+					return {}
+				}
 			}
 		},
 		data() {
 			return {
 				
-			};
+			}
 		}
 	}
 </script>
