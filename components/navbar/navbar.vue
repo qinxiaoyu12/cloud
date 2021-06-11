@@ -24,7 +24,7 @@
 			const info = uni.getSystemInfoSync()
 			this.statusBarHeight = info.statusBarHeight;
 			this.windowWidth = info.windowWidth
-			console.log(info)
+			// console.log(info)
 			
 		// h5 app mp-alipay
 		// #ifndef H5 || APP-PLUS || MP-ALIPAY

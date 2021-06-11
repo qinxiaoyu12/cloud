@@ -15,12 +15,12 @@ const requireApi = require.context(
 			/.js$/
 )
 let module = {}
-console.log(requireApi.keys())
+// console.log(requireApi.keys())
 requireApi.keys().forEach((key,index) => {
-	console.log(key);
+	// console.log(key);
 	if (key === './index.js') return;
 	Object.assign(module, requireApi(key))
 })
-console.log(module)
+// console.log(module)
 
 export default module

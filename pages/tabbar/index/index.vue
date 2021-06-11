@@ -36,6 +36,10 @@
 					// console.log(res)
 					const {data} = res;
 					this.tabList = data;
+					console.log('标签', data)
+					data.unshift({
+						name:'全部'
+					})
 				})
 			},
 			//list子组件传过来的轮播图的current

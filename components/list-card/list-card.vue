@@ -3,7 +3,7 @@
 		<!--基础卡片-->
 		<view class="listCard" v-if="items.mode === 'base'">
 			<view class="listCard-image">
-				<image src="items.cover[0]" mode="aspectFill"></image>
+				<image :src="items.cover[0]" mode="aspectFill"></image>
 			</view>
 			
 			<view class="listCard-content">
@@ -34,8 +34,8 @@
 				</view>
 				
 				<view class="listCard-image" >
-					<view v-for="item in 3" :key="item" class="listCard-image__item">
-						<image v-if="index < 3" v-for="(item,index) in items.cover" :key="index" src="items.cover[index]" mode="aspectFill"></image>
+					<view v-if="index < 3" v-for="(item,index) in items.cover" :key="index"  class="listCard-image__item">
+						<image :src="item" mode="aspectFill"></image>
 					</view>
 				</view>
 				
@@ -52,7 +52,7 @@
 		<!--大图卡片-->
 		<view class="listCard mode-image" v-if="items.mode === 'image'">
 			<view class="listCard-image" >
-					<image src="items.cover[0]" mode="aspectFill"></image>
+					<image :src="items.cover[0]" mode="aspectFill"></image>
 			</view>
 			<view class="listCard-content">
 				

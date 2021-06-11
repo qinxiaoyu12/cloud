@@ -1,7 +1,7 @@
 <template>
 	<swiper class="home-swiper" @change="change1" :current="activeIndexs">
 		<swiper-item class="swiper-item" v-for="(item, index) in tab" :key='index'>
-			<listItem :list="list"></listItem>
+			<listItem :list="listCatch[index]"></listItem>
 		</swiper-item>
 	</swiper>
 </template>
@@ -26,27 +26,37 @@
 			}
 		},
 		created() {
-			this.getList()
+			// this.getList(0)
+		},
+		watch:{
+			tab(newVal) {
+				if(newVal.length === 0) return
+				this.getList(this.activeIndex)
+			}
 		},
 		data() {
 			return {
 				activeIndex:0,
-				list:[]
+				list:[],
+				listCatch:{}
 			};
 		},
 		methods:{
 			change1(e) {
 				const {current} = e.detail
-				// console.log(e)
 				this.$emit('change1', current)
-				// console.log(current)
+				//当数据不存在或者是数据长度为0时
+				if (!this.listCatch[current] || this.listCatch[current].length === 0) {
+					this.getList(current)
+				}
 			},
-			getList() {
-				this.$api.get_list().then(res => {
-					// console.log(res)
+			getList(current) {
+				this.$api.get_list({name:this.tab[current].name}).then(res => {
+					console.log(res)
 					const {data} = res
 					this.list = data
-					console.log(this.list)
+					console.log(this.listCatch)
+					this.$set(this.listCatch, current, data)
 				})
 			}
 		}
