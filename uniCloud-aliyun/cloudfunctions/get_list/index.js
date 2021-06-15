@@ -1,7 +1,11 @@
 const db = uniCloud.database()
 //运行在云端（服务器端）的函数
 exports.main = async (event, context) => {
-	const {name} = event
+	const {
+			name,
+			page=1,
+			pageSize=10
+				} = event
 	
 	let matchObj = {}
 	if (name !=='全部') {
@@ -16,6 +20,8 @@ exports.main = async (event, context) => {
 	.project({
 		content:0
 	})
+	.skip(pageSize*(page - 1))
+	.limit(pageSize)
 	.end()
 	//接受分类，通过分类去筛选数据
 	// const collection = db.collection('user')

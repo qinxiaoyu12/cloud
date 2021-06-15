@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view @click="open">
 		<!--基础卡片-->
 		<view class="listCard" v-if="items.mode === 'base'">
 			<view class="listCard-image">
@@ -12,7 +12,8 @@
 											-webkit-box-orient: vertical;
 											-webkit-line-clamp: 2;
 											overflow: hidden;
-											word-break: break-all;">{{items.title}}</text>
+											word-break: break-all;">{{items.title}}</text>		
+					<likes :items="items"></likes>
 				</view>
 				
 				<view class="listCard-content_des">
@@ -31,6 +32,7 @@
 				<view class="listCard-content_title">
 					<text style="display: -webkit-box;-webkit-box-orient: vertical;
 											-webkit-line-clamp: 2;overflow: hidden;word-break: break-all;">{{items.title}}</text>
+					<likes :items="items"></likes>
 				</view>
 				
 				<view class="listCard-image" >
@@ -59,6 +61,7 @@
 				<view class="listCard-content_title">
 					<text style="display: -webkit-box;-webkit-box-orient: vertical;
 											-webkit-line-clamp: 2;overflow: hidden;word-break: break-all;">{{items.title}}</text>
+				<likes :items="items"></likes>
 				</view>
 				
 				<view class="listCard-content_des">
@@ -87,6 +90,11 @@
 		data() {
 			return {
 				
+			}
+		},
+		methods:{
+			open() {
+				console.log('点击card')
 			}
 		}
 	}
@@ -117,11 +125,14 @@
 			flex-direction: column;
 			padding-left: 10px;
 			width: 100%;
-			.listCard-content_titel {
+			.listCard-content_title {
+				position: relative;
+				padding-right: 30px;
 				font-size: 14px;
 				color: #333;
 				font-weight: 400;
 				line-height: 1.2;
+				
 			}
 			.listCard-content_des {
 				display: flex;

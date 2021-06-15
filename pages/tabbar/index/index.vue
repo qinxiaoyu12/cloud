@@ -45,6 +45,7 @@
 			//list子组件传过来的轮播图的current
 			change11(current1) {
 				this.tabIndex = current1
+				this.activeIndexs = current1
 			}
 	}
 }
