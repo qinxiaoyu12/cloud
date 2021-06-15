@@ -24,5 +24,9 @@ exports.main = async (event, context) => {
 	console.log('event : ', event)
 	
 	//返回数据给客户端
-	return userInfo
+	return {
+		code:200,
+		msg:'数据请求成功',
+		data:userInfo.data[0]
+	}
 };

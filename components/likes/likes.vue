@@ -28,7 +28,7 @@
 			},
 			setupdateLikes() {
 				this.$api.update_like({
-					user_id:'',
+					user_id:'60b838ee8a69dc0001bb2e08',
 					articel_id:'this.items._id'
 				}).then(res => {
 					console.log(res)
