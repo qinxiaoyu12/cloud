@@ -20,18 +20,33 @@
 				like:false
 			};
 		},
+		watch:{
+			items(newVal) {
+				this.like = this.items.is_like
+			}
+		},
+		created() {
+			this.like = this.items.is_like
+		},
 		methods:{
 			likeTap() {
-				console.log('收藏成功')
-				this.like = ! this.like
-				this.setupdateLikes()
+				this.like = ! this.like;
+				this.setupdateLikes();
 			},
 			setupdateLikes() {
+				uni.showLoading()
+				uni.showToast({
+					title:this.like?'收藏成功':'取消收藏',
+					icon:'none'
+				})
 				this.$api.update_like({
 					user_id:'60b838ee8a69dc0001bb2e08',
-					articel_id:'this.items._id'
+					articel_id:this.items._id
 				}).then(res => {
+					uni.hideLoading()
 					console.log(res)
+				}).catch(() => {
+					uni.hideLoading()
 				})
 			}
 		}
