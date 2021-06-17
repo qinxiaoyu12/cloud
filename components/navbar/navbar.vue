@@ -15,7 +15,7 @@
 				</view>
 				<view class="navbar-search" v-else>
 					<!-- 搜索页显示 -->
-					<input class="navbar-search_text" type="text" value="" placeholder="请输入您要搜索的内容"/>
+					<input class="navbar-search_text" @input="inputChange" type="text" value="" v-model="val" placeholder="请输入您要搜索的内容"/>
 				</view>
 			</view>
 		</view>
@@ -56,7 +56,8 @@
 			return {
 				statusBarHeight:20,
 				navBarHeight:45,
-				windowWidth:375
+				windowWidth:375,
+				val:''
 			};
 		},
 		methods:{
@@ -65,6 +66,11 @@
 				uni.navigateTo({
 					url:"/pages/home-search/home-search"
 				})
+			},
+			inputChange(e) {
+				// console.log(e)
+				const {value} = e.detail
+				this.$emit('input', value)
 			}
 		}
 	}
